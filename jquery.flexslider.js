@@ -328,6 +328,10 @@
           startY = null;
           dx = null;
           offset = null;
+          if (!slider.vars.pauseOnAction) {
+            slider.setTransition(slider.vars.animationDuration); 
+            slider.resume();
+          }
         }
       }
       //////////////////////////////////////////////////////////////////
