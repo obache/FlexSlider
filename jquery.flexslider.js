@@ -493,7 +493,10 @@
     
     //FlexSlider: Automatic Slideshow Pause
     slider.pause = function() {
-      clearInterval(slider.animatedSlides);
+      if (slider.animatedSlides != null) {
+        clearInterval(slider.animatedSlides);
+        slider.animatedSlides = null;
+      }
       if (slider.vars.pausePlay) {
         slider.pausePlay.removeClass('pause').addClass('play').text(slider.vars.playText);
       }
@@ -501,7 +504,9 @@
     
     //FlexSlider: Automatic Slideshow Start/Resume
     slider.resume = function() {
-      slider.animatedSlides = setInterval(slider.animateSlides, slider.vars.slideshowSpeed);
+      if (slider.animatedSlides == null) {
+        slider.animatedSlides = setInterval(slider.animateSlides, slider.vars.slideshowSpeed);
+      }
       if (slider.vars.pausePlay) {
         slider.pausePlay.removeClass('play').addClass('pause').text(slider.vars.pauseText);
       }
